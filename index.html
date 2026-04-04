@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shandi Neon</title>
+
+<style>
+body{
+  margin:0;
+  font-family:monospace;
+  background:black;
+  color:#00fff7;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.container{
+  text-align:center;
+  width:100%;
+  max-width:400px;
+}
+
+.avatar{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #00fff7;
+  box-shadow:0 0 20px #00fff7;
+  margin-bottom:15px;
+  filter: grayscale(100%) contrast(120%);
+}
+
+h1{
+  text-shadow:0 0 10px #00fff7;
+}
+
+.desc{
+  font-size:14px;
+  opacity:0.8;
+  margin-bottom:25px;
+}
+
+.btn{
+  display:block;
+  margin:12px auto;
+  padding:14px;
+  width:90%;
+  border:2px solid #00fff7;
+  border-radius:30px;
+  color:#00fff7;
+  text-decoration:none;
+  box-shadow:0 0 10px #00fff7;
+}
+
+.danger{
+  border:2px solid #ff0033;
+  color:#ff0033;
+  box-shadow:0 0 15px #ff0033;
+}
+
+#warning{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#ff0033;
+  opacity:0;
+  pointer-events:none;
+  z-index:9999;
+}
+
+#warnText,#countdown,#subText{
+  text-shadow:0 0 10px #ff0033;
+}
+
+@keyframes blink{
+  0%{opacity:1}
+  50%{opacity:0.4}
+  100%{opacity:1}
+}
+
+#warnText{animation:blink 1s infinite;animation-delay:.2s}
+#countdown{animation:blink 1.4s infinite;animation-delay:.6s;font-size:50px}
+#subText{animation:blink .7s infinite;animation-delay:1s}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- FOTO LO -->
+<img src="profile.jpg" class="avatar">
+
+<h1>Shandi</h1>
+<p class="desc">Jangan terlalu penasaran... kadang yang lo cari malah nyakitin.</p>
+
+<a class="btn" href="https://wa.me/6281330276942">📱 Chat WhatsApp</a>
+<a class="btn" href="https://tiktok.com/@lordshan6">🎵 TikTok @lordshan6</a>
+<a class="btn danger" href="https://shandi0312.github.io/TersimpanDisini/" id="secretLink">🥀 Jangan Dibuka</a>
+
+</div>
+
+<!-- WARNING -->
+<div id="warning">
+<div id="warnText">⚠ WARNING ⚠</div>
+<div id="countdown">15</div>
+<div id="subText">SYSTEM CHECK...</div>
+<button style="margin-top:20px;opacity:.6">Cancel</button>
+</div>
+
+<script>
+const btn=document.getElementById('secretLink');
+const warning=document.getElementById('warning');
+const countdownEl=document.getElementById('countdown');
+const subText=document.getElementById('subText');
+
+const messages=[
+"DATA LO SEDANG DIBACA...",
+"JANGAN LANJUTKAN...",
+"SYSTEM ERROR...",
+"AKSES DILACAK...",
+"TERLAMBAT UNTUK KEMBALI..."
+];
+
+btn.addEventListener('click',function(e){
+  e.preventDefault();
+
+  warning.style.opacity="1";
+  warning.style.pointerEvents="all";
+
+  let time=15;
+
+  const interval=setInterval(()=>{
+    time--;
+    countdownEl.innerText=time;
+    subText.innerText=messages[Math.floor(Math.random()*messages.length)];
+
+    if(time<=0){
+      clearInterval(interval);
+      window.location.href=btn.href;
+    }
+  },1000);
+});
+</script>
+
+</body>
+  </html>
