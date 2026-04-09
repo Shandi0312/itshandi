@@ -155,5 +155,20 @@ btn.addEventListener('click',function(e){
 });
 </script>
 
+  <audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let played = false;
+
+document.body.addEventListener('click', () => {
+  if (!played) {
+    document.getElementById('music').play();
+    played = true;
+  }
+});
+</script>
+
 </body>
   </html>
